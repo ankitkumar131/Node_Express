@@ -870,15 +870,21 @@ console.log('Coverage thresholds met.');
 `supertest` works with all three:
 
 ```js
-// Jest
+// File: health.test.js — Jest (CommonJS or with ESM transform support)
 const request = require('supertest');
+const { app } = require('../src/testApp');
+
 test('GET /health', async () => {
   await request(app).get('/health').expect(200);
 });
+```
 
-// Vitest
+```js
+// File: health.test.js — Vitest (ESM throughout)
 import { test, expect } from 'vitest';
 import request from 'supertest';
+import { app } from '../src/testApp.js';
+
 test('GET /health', async () => {
   const response = await request(app).get('/health');
   expect(response.status).toBe(200);
