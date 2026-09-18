@@ -157,8 +157,10 @@ const schema = z.object({
     .transform((value) => value.split(',').map((item) => item.trim()).filter(Boolean)),
 
   SHUTDOWN_TIMEOUT_MS: z.coerce.number().int().min(1_000).max(120_000).default(15_000),
-  RATE_LIMIT_ENABLED: z.coerce.boolean().default(true),
-}).strict();
+  RATE_LIMIT_ENABLED: z.enum(['true', 'false']).default('true').transform((value) => value === 'true'),
+});
+// Note: no .strict() — process.env contains PATH, HOME and dozens of other keys, so a strict
+// object schema would reject every real process. Unknown keys are ignored, as they should be.
 
 const parsed = schema.safeParse(process.env);
 
