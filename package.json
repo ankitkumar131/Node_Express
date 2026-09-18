@@ -1,0 +1,15 @@
+{
+  "name": "backend-notes",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Complete, beginner-to-production backend development notes: Node.js, Express, databases, auth, testing, Docker, deployment.",
+  "type": "module",
+  "scripts": {
+    "verify": "node scripts/verify-docs.mjs",
+    "verify:links": "node scripts/verify-docs.mjs --links-only",
+    "verify:code": "node scripts/verify-docs.mjs --code-only"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
